@@ -1,15 +1,17 @@
 {
-  "name": "prepsuite-ai-monorepo",
-  "private": true,
-  "workspaces": [
-    "client",
-    "server"
-  ],
-  "scripts": {
-    "dev:client": "cd client && npm run dev",
-    "dev:server": "cd server && npm run dev",
-    "build:client": "cd client && npm run build",
-    "test:server": "cd server && npm test",
-    "test": "npm run test:server"
-  }
+    "name":  "prepsuite-ai-monorepo",
+    "private":  true,
+    "workspaces":  [
+                       "client",
+                       "server"
+                   ],
+    "scripts":  {
+                    "dev:client":  "cd client && npm run dev",
+                    "dev:server":  "cd server && npm run dev",
+                    "build:client":  "cd client && npm run build",
+                    "test:server":  "cd server && npm test",
+                    "test":  "npm run test:client && npm run test:server",
+                    "test:client":  "cd client && npm test"
+                }
 }
+
