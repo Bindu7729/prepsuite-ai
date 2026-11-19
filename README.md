@@ -1,102 +1,162 @@
-Markdown
-# PrepSuite AI 🧠💻
-webiste link : https://prepsuite-ai-byyu-eight.vercel.app/
+# PrepSuite AI 🚀
 
-An advanced, next-generation full-stack candidate evaluation and placement preparation platform featuring modern interactive modules and secure corporate diagnostic dashboards.
+> **AI-Powered Placement Preparation & Candidate Diagnostic Platform**
+>
+> A comprehensive, full-stack candidate evaluation platform engineered to simulate high-fidelity technical screening pipelines. Combines algorithmic sandboxes, quantitative logic evaluations, and real-time competency analytics into a cohesive, distraction-free candidate workflow.
 
-## 📋 Project Overview
-PrepSuite AI is a comprehensive full-stack web application engineered to simulate high-fidelity corporate screening pipelines. It combines algorithmic execution panels, logical evaluation matrices, and real-time behavioral diagnostics into a single, cohesive, distraction-free candidate workflow.
+---
+
+<p align="center">
+  <a href="https://github.com/Bindu7729/prepsuite-ai/actions/workflows/ci.yml">
+    <img src="https://github.com/Bindu7729/prepsuite-ai/actions/workflows/ci.yml/badge.svg" alt="CI Pipeline" />
+  </a>
+  <img src="https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black" alt="React 19" />
+  <img src="https://img.shields.io/badge/Vite-8.0-646CFF?logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Express-4.19-000000?logo=express&logoColor=white" alt="Express" />
+  <img src="https://img.shields.io/badge/Vitest-5.1-729B1B?logo=vitest&logoColor=white" alt="Vitest" />
+  <img src="https://img.shields.io/badge/Jest-30.5-C21325?logo=jest&logoColor=white" alt="Jest" />
+  <a href="https://prepsuite-ai-byyu-eight.vercel.app">
+    <img src="https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+  </a>
+</p>
+
+## 📖 Project Overview
+
+**PrepSuite AI** is a full-stack candidate screening ecosystem engineered for collegiate students and technical job applicants. It provides:
+1. **Coding Sandbox:** Multi-language execution sandbox with editor controls and syntax validation.
+2. **Aptitude Arena:** Time-pressured quantitative reasoning tests with instant answer feedback and step-by-step mathematical explanations.
+3. **AI Mock Booth:** Situational interview evaluation and recruitment response tracking.
+4. **Competency Analytics:** Visualized candidate performance metrics, daily streaks, and topic mastery.
+
+---
 
 ## ✨ Key Features
-* 🧭 **Candidate Management Console** — Fluid left-pane sidebar navigational routing for high-speed module switching.
-* 💻 **Coding Sandbox Module** — Multi-language execution space optimized for tracking algorithmic runtime speeds.
-* 🧠 **Aptitude Arena** — High-density quantitative logic test engine featuring ticking countdown timers and state locking.
-* 🎙️ **AI Mock Booth** — Automated situational evaluation module supporting continuous response tracking nodes.
-* 📊 **Results Analytics** — Central telemetry dashboard displaying verified competency milestones and performance badges.
+
+* 🔐 **Secure JWT Authentication:** Full authentication lifecycle with bcrypt password hashing, session tokens, and route protection.
+* 🧠 **Aptitude Evaluation Engine:** Instant answer validation, detailed formula shortcuts, and scoring telemetry.
+* 💻 **Interactive Code Sandbox:** Code editing powered by Monaco Editor supporting runtime speed benchmarks.
+* 📊 **Telemetry & Analytics:** Real-time dashboards monitoring candidate progress, streaks, and competency milestones.
+* 🛡️ **Defensive Fallback Design:** Offline-resilient client capable of running in simulation mode if backend services are offline.
+* 🧪 **Automated Testing Suites:** Vitest unit test coverage on frontend components + Jest Supertest API endpoint validation on backend.
+
+---
 
 ## 🛠️ Technology Stack
 
 ### Frontend
-* **React.js 18** — Core UI engine library
-* **Vite** — High-speed build tool and dev server
-* **React Router DOM v6** — Client-side declarative routing architectures
-* **Tailwind CSS 3** — Utility-first styling with sleek dark-grey, teal, and indigo formal design language
+* **React 19** & **Vite 8** (High-speed build tool and UI runtime)
+* **Tailwind CSS 4** (Modern utility styling and responsive dark theme)
+* **React Router 7** (Client-side routing architecture)
+* **Monaco Editor** (High-fidelity code editor)
+* **Vitest & React Testing Library** (Automated UI test suite)
 
 ### Backend
-* **Node.js** — Event-driven runtime environment
-* **Express.js** — Minimalist web application framework
-* **Database Systems** — Robust integration endpoints for MongoDB/MySQL data persistence
+* **Node.js** & **Express 4** (RESTful API micro-services)
+* **JSON Web Tokens (JWT)** (Session authorization and bearer tokens)
+* **bcryptjs** (Cryptographic password hashing)
+* **Jest & Supertest** (End-to-end HTTP endpoint test automation)
 
-## 🎨 Core UI & Workspace Modules
+---
 
-### Layout & Shell
-* **Navigation Sidebar** — Fixed left-aligned navigation housing modular system entry ports.
-* **Upper Header Panel** — Sticky top-bar showing system state updates and candidate identity validation.
-* **Unified Workspace** — Responsive viewports built with custom glassmorphism and clean, border-aligned layouts.
+## 🏗️ Architecture
 
-### Performance Tracking
-* **My Achievements Section** — Clean milestone panels featuring dynamic badge allocations like "Algorithmic Speedster" and "Logic Master".
-* **Active Telemetry Logs** — Real-time state updates monitoring compile loops, runtime results, and platform connectivity status.
+```
+prepsuite-ai/
+├── client/
+│   ├── src/
+│   │   ├── api.js                # Axios interceptor with bearer token injection
+│   │   ├── components/           # Reusable UI elements (Navbar, Shell)
+│   │   │   └── __tests__/        # Vitest component test suites
+│   │   ├── pages/                # Route views (Dashboard, AptitudeArena, Login, Register, About)
+│   │   │   └── __tests__/        # Vitest page view test suites
+│   │   ├── App.jsx               # Application routes
+│   │   └── main.jsx              # React DOM mounting
+│   ├── vitest.config.js          # Vitest client configuration
+│   └── package.json
+│
+├── server/
+│   ├── __tests__/                # Supertest API endpoint integration tests
+│   ├── data/
+│   │   └── store.js              # State management and question catalog
+│   ├── middleware/
+│   │   └── auth.js               # JWT bearer token verification
+│   ├── routes/
+│   │   ├── auth.routes.js        # /api/auth (register, login, me)
+│   │   └── questions.routes.js   # /api/questions (list, filter, submit)
+│   ├── app.js                    # Express application factory
+│   ├── index.js                  # Service entrypoint
+│   └── package.json
+│
+├── .github/workflows/ci.yml      # Continuous integration matrix
+└── package.json                  # Root monorepo workspace configuration
+```
+
+---
 
 ## 🚀 Quick Start
 
-### Prerequisites
-* Node.js (v16+ recommended)
-* npm (Node Package Manager)
+### 1. Prerequisites
+Ensure you have Node.js (v18+) and npm installed.
 
-### Setup & Run
-
-#### Frontend (Client Subsystem):
+### 2. Clone the Repository
 ```bash
-cd client
+git clone https://github.com/Bindu7729/prepsuite-ai.git
+cd prepsuite-ai
+```
+
+### 3. Install Monorepo Dependencies
+```bash
 npm install
-npm run dev
-# Open http://localhost:5173 in your browser
-Backend (Server Subsystem):
-Bash
-cd server
-npm install
-npm start
-# Server runs on local processing port
-📦 Commands Reference
-Client Commands
-npm install — Restore all node dependency packages fresh
+```
 
-npm run dev — Run the local Vite development server
+### 4. Run Development Servers
+Start both the client and server concurrently:
+```bash
+# Run client (http://localhost:5173)
+npm run dev:client
 
-npm run build — Compile and bundle code for production layout
+# Run server (http://localhost:5000)
+npm run dev:server
+```
 
-npm run preview — Preview a local production build layout
+---
 
-Server Commands
-npm install — Install backend runtime dependencies
+## 🧪 Testing
 
-npm start — Initialize processing server lifecycle
+```bash
+# Run all tests (Client Vitest + Server Jest)
+npm test
 
-npm run dev — Launch development server with hot-reloading (if configured)
-website link : https://prepsuite-ai-byyu-eight.vercel.app/
+# Run client tests only
+npm run test:client
 
+# Run server tests only
+npm run test:server
 
-🏗️ Project Structure
-Plaintext
-prepsuite-ai/
-├── client/                     # React Vite Frontend
-│   ├── src/
-│   │   ├── components/         # Reusable modular UI elements
-│   │   ├── pages/              # Core page structures (Dashboard.jsx, etc.)
-│   │   ├── App.jsx             # Root router mapping nodes
-│   │   └── main.jsx            # Core application injection layer
-│   └── package.json
-│
-├── server/                     # Node.js / Express Backend
-│   ├── src/
-│   │   ├── controllers/        # Request handling layers
-│   │   ├── models/             # Database system schemas
-│   │   └── routes/             # API endpoint loop routers
-│   └── package.json
-│
-└── README.md
-📄 License
-This project is private and fully confidential. Unauthorized reproduction, duplication, or assessment distribution is strictly prohibited.
+# Build production client bundle
+npm run build:client
+```
 
-Happy Prepping! 🧠🔥✨
+---
+
+## 🔌 API Reference
+
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/health` | Service health status and uptime | No |
+| `POST` | `/api/auth/register` | Register new student candidate account | No |
+| `POST` | `/api/auth/login` | Authenticate credentials and receive JWT | No |
+| `GET` | `/api/auth/me` | Retrieve profile of authenticated user | Yes (Bearer) |
+| `GET` | `/api/questions` | List questions (supports `?topic=` and `?difficulty=`) | No |
+| `GET` | `/api/questions/:id` | Fetch single question details | No |
+| `POST` | `/api/questions/submit` | Submit answer evaluation and calculate score | No |
+
+---
+
+## 📄 License
+This project is developed for educational and portfolio demonstration purposes.
+
+---
+<p align="center">
+  <b>PrepSuite AI &copy; 2026</b>
+</p>
