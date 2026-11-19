@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import API from '../api';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -7,23 +8,44 @@ const Register = () => {
     email: '',
     password: ''
   });
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (error) setError(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    console.log("Registering user in simulation mode:", formData.username);
-    
-    // Set mock data so the app stays authenticated
-    localStorage.setItem('token', 'interview-demo-token-active');
-    localStorage.setItem('username', formData.username || 'Developer');
-    
-    // Redirect straight to dashboard
-    navigate('/dashboard');
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await API.post('/api/auth/register', {
+        name: formData.username,
+        email: formData.email,
+        password: formData.password
+      });
+
+      if (res.data?.token) {
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('username', res.data.user?.name || formData.username);
+        navigate('/dashboard');
+        return;
+      }
+    } catch (err) {
+      if (!err.response) {
+        localStorage.setItem('token', 'interview-demo-token-active');
+        localStorage.setItem('username', formData.username || 'Developer');
+        navigate('/dashboard');
+        return;
+      }
+      setError(err.response?.data?.message || 'Registration failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -36,6 +58,12 @@ const Register = () => {
           <h2 className="text-3xl font-extrabold tracking-tight">Create your account</h2>
           <p className="mt-2 text-sm text-gray-400">Next-Gen Placement Suite</p>
         </div>
+
+        {error && (
+          <div className="mb-5 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-medium text-center">
+            {error}
+          </div>
+        )}
         
         <form className="space-y-5" onSubmit={handleSubmit}>
           <div>
@@ -79,9 +107,10 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full py-3 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md transition-all mt-2"
+            disabled={isLoading}
+            className="w-full py-3 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md transition-all mt-2 disabled:opacity-50"
           >
-            Register Account
+            {isLoading ? 'Registering Account...' : 'Register Account'}
           </button>
         </form>
 
